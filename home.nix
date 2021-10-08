@@ -1,8 +1,15 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
+let
+discordUpdated = pkgs.discord.override rec {
+    version = "0.0.16";
+    src = builtins.fetchurl {
+      url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+      sha256 = "1s9qym58cjm8m8kg3zywvwai2i3adiq6sdayygk2zv72ry74ldai";
+    };
+  };
+in
 {
   # Let Home Manager install and manage itself.
-
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -16,11 +23,14 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
 
+  xsession.windowManager.i3 = import ./i3.nix { inherit pkgs lib; };
+
   home = {
     username = "poustouflan";
     homeDirectory = "/home/poustouflan";
     packages = with pkgs; [
       flameshot
+      discordUpdated
     ];
   };
 
