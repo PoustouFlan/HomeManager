@@ -25,6 +25,7 @@ in
 
 xsession.windowManager.i3 = import ./i3.nix { inherit pkgs lib; };
 
+
 home = {
   username = "poustouflan";
   homeDirectory = "/home/poustouflan";
@@ -34,7 +35,22 @@ home = {
     thefuck oh-my-zsh zsh-powerlevel10k zplug
     tree
     universal-ctags
+    ocaml
+    ocamlPackages.findlib
+    ocamlPackages.graphics
+    opam
+    ocamlPackages.utop
+    myEmacs
   ];
+  file = {
+    ".emacs.d/init.el".text = ''
+          (load "default.el")
+    '';
+  };
+#  sessionVariables = with pkgs; {
+#    OCAMLPATH = "${graphics}/lib/ocaml/${ocaml.version}/site-lib/";
+#    CAML_LD_LIBRARY_PATH = "${graphics}/lib/ocaml/${ocaml.version}/site-lib/stublibs";
+#  };
 };
 
 programs = {
