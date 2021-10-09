@@ -23,3 +23,4 @@ set incsearch
 set smartcase
 autocmd Filetype make setlocal noexpandtab
 autocmd FileType vim setlocal foldmethod=marker
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
