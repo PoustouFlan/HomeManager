@@ -32,6 +32,8 @@ home = {
     flameshot
     discordUpdated
     thefuck oh-my-zsh zsh-powerlevel10k zplug
+    tree
+    universal-ctags
   ];
 };
 
