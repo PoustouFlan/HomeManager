@@ -31,6 +31,7 @@ in
     packages = with pkgs; [
       flameshot
       discordUpdated
+      thefuck oh-my-zsh zsh-powerlevel10k
     ];
   };
 
@@ -46,6 +47,29 @@ in
         lg = "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       };
       ignores = [ "*~" "*.swp" ".o" ".d" "format_marker"];
+    };
+    zsh = {
+      enable = true;
+      shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch";
+      };
+      history = {
+        size = 10000;
+        path = "${config.xdg.dataHome}/zsh/history";
+      };
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "thefuck" ];
+        theme = "robbyrussell";
+      };
+      # zplug = {
+      #   enable = true;
+      #   plugins = [
+      #     { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+      #     { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } 
+      #   ];
+      # };
     };
   };
 
