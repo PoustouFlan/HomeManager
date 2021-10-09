@@ -90,6 +90,10 @@ programs = {
     };
     extraConfig = builtins.readFile vim/vimrc;
   };
+  rofi = {
+    enable = true;
+    theme = "~/.config/nixpkgs/rofi/lb.rasi";
+  };
 };
 services = {
   picom = {
