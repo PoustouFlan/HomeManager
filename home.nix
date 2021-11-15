@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+with pkgs;
 let
   discordUpdated = pkgs.discord.override rec {
     version = "0.0.16";
@@ -7,6 +8,13 @@ let
       sha256 = "1s9qym58cjm8m8kg3zywvwai2i3adiq6sdayygk2zv72ry74ldai";
     };
   };
+  my-python-packages = python-packages: with python-packages; [
+   pandas 
+   pillow
+   pygments
+   XlsxWriter
+ ];
+  python-with-my-packages = python3.withPackages my-python-packages;
 in
   {
 # Let Home Manager install and manage itself.
@@ -32,6 +40,7 @@ home = {
   packages = with pkgs; [
     flameshot
     discordUpdated
+    python-with-my-packages
     thefuck oh-my-zsh zsh-powerlevel10k zplug
     tree
     universal-ctags
@@ -41,16 +50,26 @@ home = {
     opam
     ocamlPackages.utop
     myEmacs
+    libreoffice
+    arandr
+    texlive.combined.scheme-full
+    #sox
+    #mplayer
+    #ffmpeg-full
+    #mpg123
+    vlc
+    simplescreenrecorder
   ];
+
   file = {
     ".emacs.d/init.el".text = ''
           (load "default.el")
     '';
   };
-#  sessionVariables = with pkgs; {
-#    OCAMLPATH = "${graphics}/lib/ocaml/${ocaml.version}/site-lib/";
-#    CAML_LD_LIBRARY_PATH = "${graphics}/lib/ocaml/${ocaml.version}/site-lib/stublibs";
-#  };
+  sessionVariables = with pkgs; {
+    OCAMLPATH = "${ocamlPackages.graphics}/lib/ocaml/${ocaml.version}/site-lib/";
+    CAML_LD_LIBRARY_PATH = "${ocamlPackages.graphics}/lib/ocaml/${ocaml.version}/site-lib/stublibs";
+  };
 };
 
 programs = {
