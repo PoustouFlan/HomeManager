@@ -12,7 +12,9 @@ let
    pandas 
    pillow
    pygments
-   XlsxWriter
+   XlsxWriter openpyxl
+   selenium
+   virtualenv
  ];
   python-with-my-packages = python3.withPackages my-python-packages;
 in
@@ -44,6 +46,7 @@ home = {
     thefuck oh-my-zsh zsh-powerlevel10k zplug
     tree
     universal-ctags
+    jetbrains.rider
     ocaml
     ocamlPackages.findlib
     ocamlPackages.graphics
@@ -59,6 +62,7 @@ home = {
     #mpg123
     vlc
     simplescreenrecorder
+    networkmanagerapplet
   ];
 
   file = {

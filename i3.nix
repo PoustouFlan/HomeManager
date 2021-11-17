@@ -48,6 +48,11 @@ in
           always = true;
           notification = false;
         }
+        {
+          command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+          always = true;
+          notification = false;
+        }
       ];
     };
   }
