@@ -2,8 +2,10 @@
 
 let
   wallpaper = builtins.fetchurl {
-    url = https://images8.alphacoders.com/617/617304.jpg;
-    sha256 = "0jgxc7lw5zw0anch7kkgs65av0vkimghkjpr6hv0v71f3knnrn1j";
+    #url = https://images8.alphacoders.com/617/617304.jpg;
+    #sha256 = "0jgxc7lw5zw0anch7kkgs65av0vkimghkjpr6hv0v71f3knnrn1j";
+    url = https://wallpapercave.com/wp/gLxBAUB.jpg;
+    sha256 = "0lgak61pwz3xq625p1y950xfm0nzf6ypkqdpiggkr9v6wa8g64d1";
   };
 in
   {
@@ -25,6 +27,7 @@ in
         "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "${modifier}+Print" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot full -c -p \"/home/poustouflan/Pictures/Screenshots\"";
         "${modifier}+Shift+Print" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
+        "${modifier}+F12" = "exec --no-startup-id i3lock -i ~/Documents/i3wp.png";
       };
 
       modes = { 

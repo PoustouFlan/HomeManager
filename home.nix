@@ -9,11 +9,7 @@ let
     };
   };
   my-python-packages = python-packages: with python-packages; [
-   pandas 
-   pillow
-   pygments
    XlsxWriter openpyxl
-   selenium
    virtualenv
  ];
   python-with-my-packages = python3.withPackages my-python-packages;
@@ -46,24 +42,36 @@ home = {
     thefuck oh-my-zsh zsh-powerlevel10k zplug
     tree
     universal-ctags
+    teams
+    chromium
+    dotnet-sdk_5
     jetbrains.rider
     ocaml
     ocamlPackages.findlib
     ocamlPackages.graphics
+    ocamlPackages.alcotest
+    ocamlPackages.zarith
     opam
+    ocamlPackages.mlgmpidl
     ocamlPackages.utop
     myEmacs
     libreoffice
     arandr
     texlive.combined.scheme-full
     #sox
+    gmp5
     #mplayer
     #ffmpeg-full
     #mpg123
     vlc
     simplescreenrecorder
     networkmanagerapplet
+    nodePackages.npm
+    mtpaint
+    sl lolcat
+    tig
   ];
+
 
   file = {
     ".emacs.d/init.el".text = ''
