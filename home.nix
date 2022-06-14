@@ -1,18 +1,22 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, specialArgs, lib, ... }:
 with pkgs;
 let
   discordUpdated = pkgs.discord.override rec {
-    version = "0.0.16";
+    version = "0.0.18";
     src = builtins.fetchurl {
       url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-      sha256 = "1s9qym58cjm8m8kg3zywvwai2i3adiq6sdayygk2zv72ry74ldai";
+      sha256 = "1hl01rf3l6kblx5v7rwnwms30iz8zw6dwlkjsx2f1iipljgkh5q4";
     };
   };
   my-python-packages = python-packages: with python-packages; [
    XlsxWriter openpyxl
    virtualenv
+   jinja2
+   requests
+   scikitimage
  ];
   python-with-my-packages = python3.withPackages my-python-packages;
+
 in
   {
 # Let Home Manager install and manage itself.
@@ -70,6 +74,20 @@ home = {
     mtpaint
     sl lolcat
     tig
+    polybarFull wirelesstools
+    liberation-circuit
+    mono
+    evince
+    steam-run
+    taisei osu-lazer
+    oneko
+    cppzmq gflags gtest gcovr pkg-config zeromq
+    cmake libtool automake autoconf
+    xorg.xkill
+    ascii
+    p7zip
+    inconsolata
+    openvpn burpsuite gobuster
   ];
 
 
@@ -101,7 +119,10 @@ programs = {
     enable = true;
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
+      update = "home-manager switch";
+      home = "vim ~/.config/nixpkgs/home.nix";
+      tp = "cd ~/EPITA/S2/Prog/cs";
+      commit = "sh -c \"git commit -m '$(curl -s http://whatthecommit.com/index.txt)'\"";
     };
     history = {
       size = 10000;
@@ -126,6 +147,7 @@ programs = {
       rust-vim
       vim-nix
       vim-gutentags
+      nerdtree
     ];
     settings = {
       relativenumber = true;
